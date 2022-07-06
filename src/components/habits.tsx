@@ -1,12 +1,7 @@
 import React from "react";
+import { HabitType } from "../types/habit";
 import Habit from "./habit";
 import HabitAddForm from "./habitAddForm";
-
-export type HabitType = {
-  id: number;
-  name: string;
-  count: number;
-};
 
 interface HabitsProps {
   habits: HabitType[];

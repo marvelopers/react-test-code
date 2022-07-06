@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { HabitType } from "./habits";
+import { HabitType } from "../types/habit";
 
 interface HabitProps {
   habit: HabitType;
