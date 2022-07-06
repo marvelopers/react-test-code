@@ -36,7 +36,7 @@ const App = () => {
     []
   );
 
-  const handleAdd = useCallback((habit) => addHandler(name, setHabits), []);
+  const handleAdd = useCallback((name) => addHandler(name, setHabits), []);
 
   const handleReset = useCallback(() => resetHandler(setHabits), []);
 
