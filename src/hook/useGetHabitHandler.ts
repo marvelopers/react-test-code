@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import { HabitType } from "../types/habit";
 
 const useGetHabitHandler = (habits: HabitType[]) => {
-  const incrementHandler = (habit: HabitType, update) => {
+  const incrementHandler = (habit: HabitType, update: any) => {
     const result = habits.map((prev) =>
       prev.id === habit.id ? { ...prev, count: prev.count + 1 } : prev
     );
     update(result);
   };
 
-  const decrementHandler = (habit: HabitType, update) => {
+  const decrementHandler = (habit: HabitType, update: any) => {
     const result = habits.map((prev) =>
       prev.id === habit.id
         ? { ...prev, count: prev.count - 1 < 0 ? 0 : prev.count - 1 }
@@ -18,17 +18,17 @@ const useGetHabitHandler = (habits: HabitType[]) => {
     update(result);
   };
 
-  const deleteHandler = (habit: HabitType, update) => {
+  const deleteHandler = (habit: HabitType, update: any) => {
     const result = habits.filter((prev) => prev.id !== habit.id);
     update(result);
   };
 
-  const addHandler = (name, update) => {
+  const addHandler = (name: string, update: any) => {
     const result = [...habits, { id: Date.now(), name, count: 0 }];
     update(result);
   };
 
-  const resetHandler = (update) => {
+  const resetHandler = (update: any) => {
     const result = habits.map((prev) =>
       prev.count !== 0 ? { ...prev, count: 0 } : prev
     );

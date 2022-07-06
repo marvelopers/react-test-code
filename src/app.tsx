@@ -13,32 +13,29 @@ const App = () => {
     { id: 3, name: "Coding", count: 0 },
   ]);
 
-  const {
-    incrementHandler,
-    decrementHandler,
-    deleteHandler,
-    addHandler,
-    resetHandler,
-  } = useGetHabitHandler(habits);
+  const handler = useGetHabitHandler(habits);
 
   const handleIncrement = useCallback(
-    (habit) => incrementHandler(habit, setHabits),
+    (habit) => handler.incrementHandler(habit, setHabits),
     []
   );
 
   const handleDecrement = useCallback(
-    (habit) => decrementHandler(habit, setHabits),
+    (habit) => handler.decrementHandler(habit, setHabits),
     []
   );
 
   const handleDelete = useCallback(
-    (habit) => deleteHandler(habit, setHabits),
+    (habit) => handler.deleteHandler(habit, setHabits),
     []
   );
 
-  const handleAdd = useCallback((name) => addHandler(name, setHabits), []);
+  const handleAdd = useCallback(
+    (name) => handler.addHandler(name, setHabits),
+    []
+  );
 
-  const handleReset = useCallback(() => resetHandler(setHabits), []);
+  const handleReset = useCallback(() => handler.resetHandler(setHabits), []);
 
   return (
     <>
