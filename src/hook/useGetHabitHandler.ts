@@ -1,7 +1,9 @@
 import React, { useCallback } from "react";
 import { HabitType } from "../types/habit";
 
-const useGetHabitHandler = (habits: HabitType[]) => {
+const useGetHabitHandler = (habits: HabitType[], maxHabits = 100) => {
+  const getHabits = () => habits;
+
   const incrementHandler = (habit: HabitType, update: any) => {
     const result = habits.map((prev) =>
       prev.id === habit.id ? { ...prev, count: prev.count + 1 } : prev
@@ -24,6 +26,9 @@ const useGetHabitHandler = (habits: HabitType[]) => {
   };
 
   const addHandler = (name: string, update: any) => {
+    if (habits.length === maxHabits) {
+      throw new Error(`습관의 갯수는 ${maxHabits}이상이 될 수 없습니다`);
+    }
     const result = [...habits, { id: Date.now(), name, count: 0 }];
     update(result);
   };
@@ -36,6 +41,7 @@ const useGetHabitHandler = (habits: HabitType[]) => {
   };
 
   return {
+    getHabits,
     incrementHandler,
     decrementHandler,
     deleteHandler,
