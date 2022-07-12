@@ -5,19 +5,27 @@ import HabitAddForm from "../habitAddForm";
 
 describe("HabitAddForm", () => {
   let onAdd;
+  let input;
+  let button;
   beforeEach(() => {
     onAdd = jest.fn();
-  });
-
-  it("calls onAdd when button is Clicked", () => {
     render(<HabitAddForm onAdd={onAdd} />);
 
-    const input = screen.getByPlaceholderText("Habit");
-    const button = screen.getByText("Add");
+    input = screen.getByPlaceholderText("Habit");
+    button = screen.getByText("Add");
+  });
 
+  it("calls onAdd when button is Clicked and valid habit is entered", () => {
     userEvent.type(input, "New Habit");
     userEvent.click(button);
 
     expect(onAdd).toHaveBeenCalledWith("New Habit");
+  });
+
+  it("does not call onAdd when the habit is empty", () => {
+    userEvent.type(input, "");
+    userEvent.click(button);
+
+    expect(onAdd).toBeCalledTimes(0);
   });
 });
