@@ -7,6 +7,8 @@ import HabitAddForm from "../habitAddForm";
 describe("HabitAddForm", () => {
   it("renders - 스냅샷 테스트", () => {
     const component = renderer.create(<HabitAddForm onAdd={jest.fn()} />);
+
+    expect(component.toJSON()).toMatchSnapshot()
   });
 
   describe("Form submit", () => {
